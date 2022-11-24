@@ -7,12 +7,18 @@ import sqlite3
 class MyWindow(QMainWindow):
     def __init__(self):
         super().__init__()
-        uic.loadUi('C:/Users/NAFO/PycharmProjects/pythonProject/git_hub_yandex/v_3/ui/main.ui', self)  # Загружаем дизайн
+        uic.loadUi(
+            'C:/Users/NAFO/PycharmProjects/pythonProject/git_hub_yandex/v_3/ui/main.ui',
+            self)  # Загружаем дизайн
 
-        self.comboBox.addItem('Ристретто')
-        self.comboBox.addItem('Капучино')
-        self.comboBox.addItem('Американо')
-        self.comboBox.addItem('Экспрессо')
+        connect = sqlite3.connect(
+            'C:/Users/NAFO/PycharmProjects/pythonProject/git_hub_yandex/v_3/data/coffee.sqlite')
+        cursor = connect.cursor()
+        titles = [i[0] for i in cursor.execute("""
+        SELECT title FROM coffes
+        """).fetchall()]
+
+        self.comboBox.addItems(titles)
 
         self.pushButton.clicked.connect(self.run)
 
@@ -29,13 +35,14 @@ class MyWindow(QMainWindow):
             text = self.comboBox.currentText()
             text = text.lower()
 
-            connect = sqlite3.connect('C:/Users/NAFO/PycharmProjects/pythonProject/git_hub_yandex/v_3/data/coffee.sqlite')
+            connect = sqlite3.connect(
+                'C:/Users/NAFO/PycharmProjects/pythonProject/git_hub_yandex/v_3/data/coffee.sqlite')
             cursor = connect.cursor()
 
             result = cursor.execute("""
             SELECT * FROM coffes
             WHERE title = ?
-            """, (text, )).fetchall()[0]
+            """, (text,)).fetchall()[0]
 
             id = str(result[0]).title()
             title = str(result[1]).title()
@@ -54,9 +61,6 @@ class MyWindow(QMainWindow):
             self.LE_7.setText(str(volume))
         except Exception as e:
             print(e)
-
-
-
 
 
 if __name__ == '__main__':
