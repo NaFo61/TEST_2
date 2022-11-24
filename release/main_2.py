@@ -2,11 +2,12 @@ import sys
 from PyQt5.QtWidgets import QApplication, QMainWindow
 from PyQt5 import uic
 import sqlite3
+from addEditCoffeeForm import Ui_MainWindow
 
-class MyWindow(QMainWindow):
+class MyWindow(QMainWindow, Ui_MainWindow):
     def __init__(self):
         super().__init__()
-        uic.loadUi('addEditCoffeeForm.ui', self)  # Загружаем дизайн
+        self.setupUi(self)
         self.GOG = None
 
         self.hide()
