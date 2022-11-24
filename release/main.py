@@ -7,7 +7,7 @@ import sqlite3
 class MyWindow(QMainWindow):
     def __init__(self):
         super().__init__()
-        uic.loadUi('main.ui', self)  # Загружаем дизайн
+        uic.loadUi('C:/Users/NAFO/PycharmProjects/pythonProject/git_hub_yandex/v_3/ui/main.ui', self)  # Загружаем дизайн
 
         self.comboBox.addItem('Ристретто')
         self.comboBox.addItem('Капучино')
@@ -29,7 +29,7 @@ class MyWindow(QMainWindow):
             text = self.comboBox.currentText()
             text = text.lower()
 
-            connect = sqlite3.connect('coffee.sqlite')
+            connect = sqlite3.connect('C:/Users/NAFO/PycharmProjects/pythonProject/git_hub_yandex/v_3/data/coffee.sqlite')
             cursor = connect.cursor()
 
             result = cursor.execute("""

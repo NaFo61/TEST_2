@@ -14,7 +14,7 @@ class MyWindow(QMainWindow, Ui_MainWindow):
 
         self.main_title = None
 
-        connect = sqlite3.connect('coffee.sqlite')
+        connect = sqlite3.connect('C:/Users/NAFO/PycharmProjects/pythonProject/git_hub_yandex/v_3/data/coffee.sqlite')
         cursor = connect.cursor()
         titles = [i[0] for i in cursor.execute("""
         SELECT title FROM coffes
@@ -151,7 +151,7 @@ class MyWindow(QMainWindow, Ui_MainWindow):
 
         if title and degree and type and description and price and volume:
 
-            connect = sqlite3.connect('coffee.sqlite')
+            connect = sqlite3.connect('C:/Users/NAFO/PycharmProjects/pythonProject/git_hub_yandex/v_3/data/coffee.sqlite')
             cursor = connect.cursor()
 
             titles = [i[0] for i in cursor.execute("""
@@ -173,7 +173,7 @@ class MyWindow(QMainWindow, Ui_MainWindow):
 
     def edit_find(self):
         self.GOG = True
-        connect = sqlite3.connect('coffee.sqlite')
+        connect = sqlite3.connect('C:/Users/NAFO/PycharmProjects/pythonProject/git_hub_yandex/v_3/data/coffee.sqlite')
         cursor = connect.cursor()
 
         self.main_title = self.CB.currentText()
@@ -207,7 +207,7 @@ class MyWindow(QMainWindow, Ui_MainWindow):
                 price = self.LE_11.text().lower()
                 volume = self.LE_12.text().lower()
 
-                connect = sqlite3.connect('coffee.sqlite')
+                connect = sqlite3.connect('C:/Users/NAFO/PycharmProjects/pythonProject/git_hub_yandex/v_3/data/coffee.sqlite')
                 cursor = connect.cursor()
 
                 id = cursor.execute("""
